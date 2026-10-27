@@ -1,20 +1,21 @@
-VIDEO CORNER STUDIO — DEPLOYMENT FIX
+VIDEO CORNER STUDIO — NETLIFY BUILD FIX v2
 
-This project pins @ffmpeg/ffmpeg and @ffmpeg/core to the same version (0.12.6) and copies their matching ESM files into the exact vendor paths used by index.html. This prevents a mismatched or incomplete FFmpeg bundle.
+IMPORTANT: The project files are at the ZIP root. Do not keep them inside an extra nested folder in the GitHub repository.
 
-IMPORTANT: Deploy this ZIP through a Netlify build, not by dragging the ZIP into Netlify's manual deploy area. The build needs npm to install the two pinned dependencies and generate dist/.
+Netlify settings:
+- Base directory: leave blank
+- Build command: npm run build
+- Publish directory: dist
 
-Netlify setup:
-1. Extract this ZIP on your computer.
-2. Put the extracted folder in a Git repository and push it to GitHub/GitLab, then import that repository into Netlify.
-3. Build command: npm run build
-4. Publish directory: dist
-5. Deploy. The included netlify.toml already sets these values.
+This build pins @ffmpeg/ffmpeg and @ffmpeg/core to the same version and bundles their ESM assets locally. The build fails if wrapper/core files are missing or suspiciously small, instead of publishing an incomplete app.
 
-For a local test:
-1. Install Node.js 20 or newer.
-2. Run: npm install
-3. Run: npm run build
-4. Serve the dist folder through a local HTTP server; do not open index.html directly with file://.
+To use:
+1. Extract this ZIP.
+2. Upload the CONTENTS of this folder to the ROOT of the existing GitHub repository, replacing the old files.
+3. In Netlify, confirm the settings above and trigger a fresh deploy with cache cleared if offered.
 
-The user's video is processed in the browser; it is not uploaded by the app.
+Local build requires Node.js 20+ and internet access for npm install:
+  npm install
+  npm run build
+
+Video processing runs in the browser; videos are not uploaded by this app.

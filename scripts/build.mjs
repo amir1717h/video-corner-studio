@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const root = process.cwd();
@@ -13,16 +13,17 @@ await cp(path.join(modules, '@ffmpeg', 'ffmpeg', 'dist', 'esm'), path.join(dist,
 await cp(path.join(modules, '@ffmpeg', 'core', 'dist', 'esm'), path.join(dist, 'vendor', 'core'), { recursive: true });
 await writeFile(path.join(dist, '_headers'), '/*\n  X-Content-Type-Options: nosniff\n\n/vendor/core/*.wasm\n  Content-Type: application/wasm\n');
 
-const required = [
-  'vendor/ffmpeg/index.js',
-  'vendor/ffmpeg/classes.js',
-  'vendor/ffmpeg/worker.js',
-  'vendor/core/ffmpeg-core.js',
-  'vendor/core/ffmpeg-core.wasm'
-];
-for (const file of required) {
+const minimumSizes = {
+  'vendor/ffmpeg/index.js': 1000,
+  'vendor/ffmpeg/classes.js': 1000,
+  'vendor/ffmpeg/worker.js': 1000,
+  'vendor/core/ffmpeg-core.js': 100000,
+  'vendor/core/ffmpeg-core.wasm': 1000000
+};
+for (const [file, minBytes] of Object.entries(minimumSizes)) {
   const fullPath = path.join(dist, file);
-  const stat = await import('node:fs/promises').then(fs => fs.stat(fullPath));
-  if (!stat.isFile() || stat.size < 10) throw new Error(`Required FFmpeg asset missing or empty: ${file}`);
+  let size = 0;
+  try { size = (await stat(fullPath)).size; } catch {}
+  if (size < minBytes) throw new Error(`FFmpeg asset missing or incomplete: ${file} (${size} bytes; expected at least ${minBytes}).`);
 }
-console.log('Build complete: FFmpeg wrapper and core assets are bundled locally.');
+console.log('Build complete: local FFmpeg ESM wrapper and matching core assets are present.');

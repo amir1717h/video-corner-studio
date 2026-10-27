@@ -190,7 +190,7 @@ async function runOne(kind,inputName,baseName,keepAudio,size){
     args.push('-c:v','libvpx-vp9','-pix_fmt','yuva420p','-auto-alt-ref','0','-b:v','0','-crf','30','-deadline','realtime','-cpu-used','5');
     if(keepAudio)args.push('-c:a','libopus','-b:a','128k');
   }else{
-    args.push('-c:v','prores_ks','-profile:v','4','-pix_fmt','yuva444p10le','-vendor','apl0');
+    args.push('-c:v','prores_ks','-profile:v','4','-pix_fmt','yuva444p10le','-qscale:v','11','-vendor','apl0');
     if(keepAudio)args.push('-c:a','pcm_s16le');
   }
   if(!keepAudio)args.push('-an');
