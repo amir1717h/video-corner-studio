@@ -14,7 +14,8 @@ await cp(path.join(modules, '@ffmpeg', 'core', 'dist', 'esm'), path.join(dist, '
 await writeFile(path.join(dist, '_headers'), '/*\n  X-Content-Type-Options: nosniff\n\n/vendor/core/*.wasm\n  Content-Type: application/wasm\n');
 
 const minimumSizes = {
-  'vendor/ffmpeg/index.js': 1000,
+  // The ESM entry point is intentionally tiny (it re-exports classes.js).
+  'vendor/ffmpeg/index.js': 20,
   'vendor/ffmpeg/classes.js': 1000,
   'vendor/ffmpeg/worker.js': 1000,
   'vendor/core/ffmpeg-core.js': 100000,
