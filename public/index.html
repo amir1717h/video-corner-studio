@@ -5,159 +5,207 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Video Corner Studio</title>
 <style>
-:root{color-scheme:dark;--bg:#101319;--panel:#191e27;--line:#303846;--muted:#aab4c4;--accent:#8b9dff;--good:#75d6ae}{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#202943 0,transparent 35%),var(--bg);color:#f5f7fb;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.wrap{max-width:980px;margin:auto;padding:28px 18px 50px}h1{font-size:clamp(27px,4vw,40px);line-height:1.1;margin:0 0 10px}.sub{color:var(--muted);max-width:700px;margin:0 0 24px}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.panel{background:color-mix(in srgb,var(--panel) 95%,transparent);border:1px solid var(--line);border-radius:18px;padding:18px;min-width:0}.panel h2{font-size:17px;margin:0 0 14px}.drop{border:1.5px dashed #596782;border-radius:14px;padding:24px 14px;text-align:center;background:#121721;cursor:pointer}.drop strong{display:block;font-size:16px}.muted{color:var(--muted);font-size:13px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:17px 0 8px}input[type=range]{width:100%;accent-color:var(--accent)}input[type=file]{display:none}select,button{font:inherit;border-radius:10px;border:1px solid var(--line);padding:10px 12px;background:#111722;color:#f5f7fb}button{cursor:pointer;font-weight:650}button.primary{background:var(--accent);color:#101323;border-color:transparent;width:100%;padding:13px}button:disabled{opacity:.45;cursor:not-allowed}.preview{min-height:260px;display:flex;align-items:center;justify-content:center;border-radius:12px;overflow:hidden;background-color:#202631;background-image:linear-gradient(45deg,#343b47 25%,transparent 25%),linear-gradient(-45deg,#343b47 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#343b47 75%),linear-gradient(-45deg,transparent 75%,#343b47 75%);background-size:22px 22px;background-position:0 0,0 11px,11px -11px,-11px 0;position:relative}.preview video{max-width:100%;max-height:390px;display:block}.status{margin-top:12px;color:var(--muted);font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.progress{height:7px;border-radius:99px;background:#303846;overflow:hidden;margin-top:10px}.progress div{height:100%;width:0;background:var(--good);transition:width .2s}.downloads{display:grid;gap:10px;margin-top:14px}.downloads a{display:block;text-decoration:none;color:#dce2ff;background:#242c3b;border:1px solid #3a465b;border-radius:10px;padding:11px 13px}.note{margin-top:18px;padding:12px 14px;background:#20242d;border-radius:12px;color:#c4ccda;font-size:13px}.wide{grid-column:1/-1}.filemeta{margin-top:10px;color:var(--muted);font-size:13px}.check{display:flex;align-items:flex-start;gap:9px;color:var(--muted);font-size:13px;margin:14px 0}.check input{margin-top:4px}@media(max-width:760px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.wrap{padding:20px 12px 36px}.preview{min-height:200px}}
+:root{color-scheme:dark;--bg:#101319;--panel:#191e27;--line:#303846;--muted:#aab4c4;--accent:#8b9dff;--good:#75d6ae}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#202943 0,transparent 35%),var(--bg);color:#f5f7fb;font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.wrap{max-width:980px;margin:auto;padding:28px 18px 50px}h1{font-size:clamp(27px,4vw,40px);line-height:1.1;margin:0 0 10px}.sub{color:var(--muted);max-width:700px;margin:0 0 24px}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.panel{background:color-mix(in srgb,var(--panel) 95%,transparent);border:1px solid var(--line);border-radius:18px;padding:18px;min-width:0}.panel h2{font-size:17px;margin:0 0 14px}.drop{border:1.5px dashed #596782;border-radius:14px;padding:24px 14px;text-align:center;background:#121721;cursor:pointer}.drop strong{display:block;font-size:16px}.muted{color:var(--muted);font-size:13px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:17px 0 8px}input[type=range]{width:100%;accent-color:var(--accent)}input[type=file]{display:none}select,button{font:inherit;border-radius:10px;border:1px solid var(--line);padding:10px 12px;background:#111722;color:#f5f7fb}button{cursor:pointer;font-weight:650}button.primary{background:var(--accent);color:#101323;border-color:transparent;width:100%;padding:13px}button:disabled{opacity:.45;cursor:not-allowed}.preview{min-height:260px;display:flex;align-items:center;justify-content:center;border-radius:12px;overflow:hidden;background-color:#202631;background-image:linear-gradient(45deg,#343b47 25%,transparent 25%),linear-gradient(-45deg,#343b47 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#343b47 75%),linear-gradient(-45deg,transparent 75%,#343b47 75%);background-size:22px 22px;background-position:0 0,0 11px,11px -11px,-11px 0;position:relative}.preview video{max-width:100%;max-height:390px;display:block}.status{margin-top:12px;color:var(--muted);font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.progress{height:7px;border-radius:99px;background:#303846;overflow:hidden;margin-top:10px}.progress div{height:100%;width:0;background:var(--good);transition:width .2s}.downloads{display:grid;gap:10px;margin-top:14px}.downloads a{display:block;text-decoration:none;color:#dce2ff;background:#242c3b;border:1px solid #3a465b;border-radius:10px;padding:11px 13px}.note{margin-top:18px;padding:12px 14px;background:#20242d;border-radius:12px;color:#c4ccda;font-size:13px}.wide{grid-column:1/-1}.filemeta{margin-top:10px;color:var(--muted);font-size:13px}.check{display:flex;align-items:flex-start;gap:9px;color:var(--muted);font-size:13px;margin:14px 0}.check input{margin-top:4px}@media(max-width:760px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}.wrap{padding:20px 12px 36px}.preview{min-height:200px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <h1>Video Corner Studio</h1>
-<p class="sub">Round the corners of your video securely inside your browser using FFmpeg WebAssembly.</p>
+<p class="sub">Round the corners of an MP4 video and export a video with a real transparent alpha channel. Processing runs in your browser using FFmpeg WebAssembly; your video is not uploaded to a server.</p>
 <div class="grid">
 <section class="panel">
 <h2>1. Choose a video</h2>
-<label class="drop" for="file"><strong>Choose Video File</strong><span class="muted">Tap to browse or select MP4/MOV</span></label>
-<input id="file" type="file" accept="video/">
+<label class="drop" for="file"><strong>Choose MP4 video</strong><span class="muted">Tap to browse or select a file</span></label>
+<input id="file" type="file" accept="video/mp4,video/*">
 <div id="filemeta" class="filemeta">No video selected.</div>
-<div class="row"><label for="radius">Corner radius</label><strong><span id="radiusValue">20</span>px</strong></div>
-<input id="radius" type="range" min="0" max="100" value="20" step="1">
-
+<div class="row"><label for="radius">Corner radius</label><strong><span id="radiusValue">18</span>%</strong></div>
+<input id="radius" type="range" min="0" max="50" value="18" step="1">
+<div class="row"><span class="muted">Square corners</span><span class="muted">Fully rounded</span></div>
 <div class="row"><label for="format">Export format</label></div>
-<select id="format" style="width:100%">
-<option value="webm">WebM — Transparent Alpha (VP9)</option>
-<option value="mp4">MP4 — Standard (Fast & Compatible)</option>
-<option value="mov">MOV — ProRes 4444 (High Quality Alpha)</option>
-</select>
-
-<label class="check"><input id="audio" type="checkbox" checked> Keep source audio</label>
+<select id="format" style="width:100%"><option value="webm">WebM — VP9 with alpha (smaller)</option><option value="mov">MOV — ProRes 4444 with alpha (larger)</option><option value="both">Both WebM and MOV</option></select>
+<label class="check"><input id="audio" type="checkbox" checked> Keep source audio when possible (audio is re-encoded for the chosen container).</label>
 <button id="export" class="primary" disabled>Process video</button>
 <div class="progress"><div id="bar"></div></div>
-<div id="status" class="status">Select a video to begin.</div>
+<div id="status" class="status">Select a video to begin. The first export may take a while while the browser loads FFmpeg.</div>
 <div id="downloads" class="downloads"></div>
+<details id="diag" style="margin-top:14px"><summary class="muted" style="cursor:pointer">Diagnostics</summary><button id="copydiag" type="button" style="margin:10px 0">Copy diagnostics</button><pre id="diagtext" class="status" style="max-height:260px;overflow:auto;background:#121721;padding:10px;border-radius:10px;margin:0"></pre></details>
 </section>
-
 <section class="panel">
 <h2>2. Preview</h2>
 <div id="preview" class="preview"><div class="muted">Your video preview appears here</div></div>
-<p class="muted">The preview updates live using CSS rounded corners. The exported file applies actual video processing.</p>
+<p class="muted">The checkerboard represents transparency outside the rounded corners. The preview is illustrative; the downloaded file is encoded separately.</p>
+</section>
+<section class="panel wide">
+<h2>Important notes</h2>
+<ul class="muted">
+<li>FFmpeg is served from this same site (no third-party CDN). The first load downloads about 30 MB, then it is cached by your browser.</li>
+<li>WebM transparency depends on VP9 alpha support in the app where you use the file. MOV ProRes 4444 is widely used for alpha workflows but can be much larger.</li>
+<li>For large or long videos, your browser may run out of memory. Close other tabs and try a shorter or lower-resolution copy if processing fails.</li>
+<li>This page must be served over http(s) (for example on Netlify or a local web server); opening the file directly with file:// will not work.</li>
+</ul>
 </section>
 </div>
+<div class="note">Privacy: the selected video is processed in this browser and is never uploaded.</div>
 </div>
-
 <script type="module">
-const ('file'), radius=('radiusValue'), format=('export'), status=('bar'), preview=('filemeta'), downloads=$`('downloads');
+const $ = id => document.getElementById(id);
+const fileInput=$('file'), radius=$('radius'), radiusValue=$('radiusValue'), format=$('format'), exportBtn=$('export'),
+      statusEl=$('status'), bar=$('bar'), preview=$('preview'), filemeta=$('filemeta'), downloads=$('downloads'),
+      diag=$('diag'), diagText=$('diagtext');
 let selectedFile=null, previewUrl=null, ffmpeg=null, loaded=false, busy=false;
+let caps={vp9:true, prores:true, alphamerge:true};   // filled in by preflight()
+let stage='idle';
+const logTail=[];            // last FFmpeg log lines (kept for diagnostics)
+const diagLines=[];
 
-function setStatus(s){status.textContent=s}
+function setStatus(s){statusEl.textContent=s}
 function setProgress(v){bar.style.width=Math.max(0,Math.min(100,v))+'%'}
+function dlog(s){diagLines.push(`[${new Date().toISOString().slice(11,23)}] ${s}`); if(diagLines.length>400)diagLines.shift(); diagText.textContent=diagLines.join('\n');}
+function setStage(s){stage=s; dlog('stage: '+s)}
+$('copydiag').addEventListener('click',()=>navigator.clipboard?.writeText(diagText.textContent+'\n\n--- ffmpeg log tail ---\n'+logTail.join('\n')));
 
-radius.addEventListener('input',()=>{
-radiusValue.textContent=radius.value;
-const v=preview.querySelector('video');
-if(v) v.style.borderRadius=radius.value+'px';
-});
+dlog('page '+location.href+' | UA '+navigator.userAgent);
+dlog('crossOriginIsolated='+self.crossOriginIsolated+' (not required: single-thread core)');
 
+radius.addEventListener('input',()=>{radiusValue.textContent=radius.value; const v=preview.querySelector('video'); if(v) v.style.borderRadius=radius.value+'%';});
 fileInput.addEventListener('change',()=>{
-selectedFile=fileInput.files?.[0]||null; downloads.replaceChildren(); setProgress(0);
-if(previewUrl) URL.revokeObjectURL(previewUrl);
-if(!selectedFile){exportBtn.disabled=true;filemeta.textContent='No video selected.';return}
-previewUrl=URL.createObjectURL(selectedFile);
-const v=document.createElement('video');
-v.src=previewUrl; v.controls=true; v.muted=true; v.playsInline=true; v.preload='metadata';
-v.style.borderRadius=radius.value+'px';
-preview.replaceChildren(v);
-filemeta.textContent=``${selectedFile.name} • ${(selectedFile.size/1024/1024).toFixed(2)} MB;
-exportBtn.disabled=false;
-setStatus('Video selected. Adjust radius and click Process video.');
+  selectedFile=fileInput.files?.[0]||null; downloads.replaceChildren(); setProgress(0);
+  if(previewUrl) URL.revokeObjectURL(previewUrl);
+  if(!selectedFile){exportBtn.disabled=true;filemeta.textContent='No video selected.';return}
+  previewUrl=URL.createObjectURL(selectedFile);
+  const v=document.createElement('video');v.src=previewUrl;v.controls=true;v.muted=true;v.playsInline=true;v.preload='metadata';v.style.borderRadius=radius.value+'%';
+  preview.replaceChildren(v);filemeta.textContent=`${selectedFile.name} • ${(selectedFile.size/1024/1024).toFixed(2)} MB`;
+  exportBtn.disabled=false;setStatus('Video selected. Adjust the radius and choose an output format.');
 });
 
+/* ---------- FFmpeg loading (self-hosted, same origin, ESM wrapper + ESM core) ---------- */
+async function runCapture(args){
+  const lines=[]; const h=({message})=>lines.push(message);
+  ffmpeg.on('log',h);
+  let code; try{ code=await ffmpeg.exec(args);} finally{ ffmpeg.off('log',h); }
+  return {code, text:lines.join('\n')};
+}
+async function preflight(){
+  setStage('preflight: probing encoders/filters in the loaded core');
+  const enc=await runCapture(['-hide_banner','-encoders']);
+  const flt=await runCapture(['-hide_banner','-filters']);
+  caps.vp9=/\blibvpx-vp9\b/.test(enc.text);
+  caps.prores=/\bprores_ks\b/.test(enc.text);
+  caps.alphamerge=/\balphamerge\b/.test(flt.text);
+  dlog(`core capabilities: libvpx-vp9=${caps.vp9} prores_ks=${caps.prores} alphamerge=${caps.alphamerge}`);
+  for(const o of format.options){
+    if(o.value==='webm'&&!caps.vp9){o.disabled=true;o.text+=' — not in this FFmpeg build'}
+    if(o.value==='mov'&&!caps.prores){o.disabled=true;o.text+=' — not in this FFmpeg build'}
+    if(o.value==='both'&&!(caps.vp9&&caps.prores)){o.disabled=true;o.text+=' — not available'}
+  }
+  if(format.selectedOptions[0]?.disabled){ const ok=[...format.options].find(o=>!o.disabled); if(ok)format.value=ok.value; }
+  if(!caps.alphamerge) throw new Error('This FFmpeg build has no "alphamerge" filter, so transparency cannot be produced.');
+  if(!caps.vp9&&!caps.prores) throw new Error('This FFmpeg build has neither libvpx-vp9 nor prores_ks.');
+}
 async function loadFFmpeg(){
-if(loaded)return;
-setStatus('Loading FFmpeg engine… Please wait (first time takes a few seconds).');
-const { FFmpeg } = await import('https://unpkg.com/@ffmpeg/ffmpeg@0.12.10/dist/esm/index.js');
-const { toBlobURL } = await import('https://unpkg.com/@ffmpeg/util@0.12.1/dist/esm/index.js');
-ffmpeg=new FFmpeg();
-ffmpeg.on('log',({message})=>{if(message && /error|failed/i.test(message)) console.warn(message)});
-ffmpeg.on('progress',({progress})=>{if(Number.isFinite(progress))setProgress(Math.max(3,Math.min(97,progress*100)))});
-
-const base='https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
-const coreURL=await toBlobURL(base+'/ffmpeg-core.js','text/javascript');
-const wasmURL=await toBlobURL(base+'/ffmpeg-core.wasm','application/wasm');
-await ffmpeg.load({coreURL,wasmURL});
-loaded=true;
+  if(loaded)return;
+  setStatus('Loading FFmpeg engine… The first load can take a minute.');
+  setStage('import ./vendor/ffmpeg/index.js');
+  const { FFmpeg } = await import('./vendor/ffmpeg/index.js');
+  ffmpeg=new FFmpeg();
+  ffmpeg.on('log',({message})=>{ logTail.push(String(message)); if(logTail.length>60)logTail.shift(); if(/error|failed|invalid|unsupported|no such/i.test(String(message))) setStatus('FFmpeg: '+message)});
+  ffmpeg.on('progress',({progress})=>{if(Number.isFinite(progress))setProgress(Math.max(3,Math.min(97,progress*100)))});
+  const coreURL=new URL('./vendor/core/ffmpeg-core.js',location.href).href;
+  const wasmURL=new URL('./vendor/core/ffmpeg-core.wasm',location.href).href;
+  // Fail early with a clear message if the files were not deployed (a missing file on Netlify returns index.html with HTTP 200!)
+  setStage('check core files are deployed');
+  const head=await fetch(wasmURL,{method:'HEAD'});
+  const ct=head.headers.get('content-type')||'';
+  dlog(`HEAD ${wasmURL} -> ${head.status} ${ct} ${head.headers.get('content-length')||''}`);
+  if(!head.ok||/text\/html/i.test(ct)) throw new Error('ffmpeg-core.wasm was not deployed at '+wasmURL+' (got '+head.status+' '+ct+'). The Netlify build step did not run - see README.');
+  setStage('ffmpeg.load()');
+  await ffmpeg.load({coreURL,wasmURL});
+  loaded=true;
+  await preflight();
 }
 
-async function runProcess(kind, inputName, baseName, keepAudio){
-let ext = kind === 'webm' ? 'webm' : (kind === 'mov' ? 'mov' : 'mp4');
-let outName = baseName + '_rounded.' + ext;
-let r = radius.value;
-
-// فیلتر استاندارد و بهینه برای برش گوشه ها
-let vf = format=rgba,geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)':a='if(lt(hypot(x-r\\,y-r)\\,r)*lt(hypot(x-(W-r)\\,y-r)\\,r)*lt(hypot(x-r\\,y-(H-r))\\,r)*lt(hypot(x-(W-r)\\,y-(H-r))\\,r)\\,255\\,255)';
-
-// اگر فرمت MP4 معمولی بود از فیلتر ساده‌تر بدون آلفا استفاده می‌کنیم تا سریع‌تر و بدون ارور خروجی دهد
-if(kind === 'mp4') {
-vf = scale=trunc(iw/2)*2:trunc(ih/2)*2;
+/* ---------- Mask + sizes ---------- */
+function drawMask(w,h,pct){
+  const c=document.createElement('canvas'); c.width=w; c.height=h;
+  const x=c.getContext('2d'); x.fillStyle='#000'; x.fillRect(0,0,w,h);
+  const r=Math.min(w,h)*Math.min(50,Math.max(0,pct))/100;
+  x.fillStyle='#fff'; x.beginPath();
+  x.moveTo(r,0); x.lineTo(w-r,0); x.arcTo(w,0,w,r,r); x.lineTo(w,h-r); x.arcTo(w,h,w-r,h,r);
+  x.lineTo(r,h); x.arcTo(0,h,0,h-r,r); x.lineTo(0,r); x.arcTo(0,0,r,0,r); x.closePath(); x.fill();
+  return new Promise((res,rej)=>c.toBlob(async b=>b?res(new Uint8Array(await b.arrayBuffer())):rej(new Error('Canvas could not create the mask PNG')),'image/png'));
+}
+async function getSize(inputName){
+  const v=preview.querySelector('video');
+  let w=v?.videoWidth||0, h=v?.videoHeight||0, d=v?.duration;
+  if(!w||!h){   // browser cannot decode this codec: ask FFmpeg instead
+    setStage('probe size with ffmpeg');
+    const p=await runCapture(['-hide_banner','-i',inputName]);   // exits non-zero by design (no output file)
+    const m=/Video:.*?[\s,](\d{2,5})x(\d{2,5})/.exec(p.text);
+    if(!m) throw new Error('Could not determine the video size.\n'+p.text.slice(-600));
+    w=+m[1]; h=+m[2]; d=NaN;
+  }
+  return {w:w-(w%2), h:h-(h%2), dur:Number.isFinite(d)&&d>0?d:null};   // even dimensions required for yuv420
 }
 
-let args = ['-y', '-i', inputName, '-map', '0:v:0'];
-if(keepAudio) args.push('-map', '0:a?');
-
-if(kind === 'webm'){
-args.push('-c:v', 'libvpx-vp9', '-pix_fmt', 'yuva420p', '-crf', '30', '-b:v', '0');
-if(keepAudio) args.push('-c:a', 'libopus'); else args.push('-an');
-} else if(kind === 'mov'){
-args.push('-c:v', 'prores_ks', '-profile:v', '4', '-pix_fmt', 'yuva444p10le');
-if(keepAudio) args.push('-c:a', 'pcm_s16le'); else args.push('-an');
-} else {
-args.push('-c:v', 'libx264', '-preset', 'ultrafast', '-crf', '23', '-pix_fmt', 'yuv420p');
-if(keepAudio) args.push('-c:a', 'aac'); else args.push('-an');
+/* ---------- Encoding ---------- */
+async function runOne(kind,inputName,baseName,keepAudio,size){
+  const outName=baseName+(kind==='webm'?'.webm':'.mov');
+  const {w,h,dur}=size;
+  const isWebm=kind==='webm';
+  const pf=isWebm?'yuv420p':'yuv444p10le', mpf=isWebm?'gray':'gray10le', outpf=isWebm?'yuva420p':'yuva444p10le';
+  const fc=`[0:v]scale=${w}:${h},setsar=1,format=${pf}[v];[1:v]format=${mpf}[m];[v][m]alphamerge=shortest=1,format=${outpf}[out]`;
+  const args=['-y','-i',inputName,'-loop','1','-framerate','30','-i','mask.png','-filter_complex',fc,'-map','[out]'];
+  if(keepAudio)args.push('-map','0:a?');
+  args.push('-shortest'); if(dur)args.push('-t',String(Math.ceil(dur)+1));
+  args.push('-fps_mode','passthrough');
+  if(isWebm){
+    args.push('-c:v','libvpx-vp9','-pix_fmt','yuva420p','-auto-alt-ref','0','-b:v','0','-crf','30','-deadline','realtime','-cpu-used','5');
+    if(keepAudio)args.push('-c:a','libopus','-b:a','128k');
+  }else{
+    args.push('-c:v','prores_ks','-profile:v','4','-pix_fmt','yuva444p10le','-vendor','apl0');
+    if(keepAudio)args.push('-c:a','pcm_s16le');
+  }
+  if(!keepAudio)args.push('-an');
+  args.push(outName);
+  dlog('ffmpeg '+JSON.stringify(args));
+  logTail.length=0;
+  setStatus(`Encoding ${kind.toUpperCase()}… This may take several minutes.`);
+  setStage('ffmpeg.exec ('+kind+')');
+  const code=await ffmpeg.exec(args);
+  dlog('exec exit code '+code);
+  if(code!==0) throw new Error(`FFmpeg exited with code ${code} while encoding ${kind.toUpperCase()}.\n\nLast FFmpeg output:\n${logTail.slice(-12).join('\n')}`);
+  setStage('readFile '+outName);
+  const data=await ffmpeg.readFile(outName);
+  if(!data || !data.length)throw new Error(`The ${kind.toUpperCase()} output is empty.`);
+  const url=URL.createObjectURL(new Blob([data],{type:isWebm?'video/webm':'video/quicktime'}));
+  const a=document.createElement('a');a.href=url;a.download=outName;a.textContent=`Download ${outName} (${(data.length/1024/1024).toFixed(1)} MB)`;downloads.appendChild(a);
+  try{await ffmpeg.deleteFile(outName)}catch{}
 }
-
-args.push(outName);
-setStatus(Encoding${kind.toUpperCase()}... Please keep this tab open.`);
-await ffmpeg.exec(args);
-
-const data = await ffmpeg.readFile(outName);
-if(!data || !data.length) throw new Error(The ${kind.toUpperCase()} output is empty.`);
-
-const mime = kind === 'webm' ? 'video/webm' : (kind === 'mov' ? 'video/quicktime' : 'video/mp4');
-const url = URL.createObjectURL(new Blob([data], {type: mime}));
-
-const a = document.createElement('a');
-a.href = url;
-a.download = outName;
-a.textContent = Download${outName} (${(data.length/1024/1024).toFixed(1)} MB);
-downloads.appendChild(a);
-
-try { await ffmpeg.deleteFile(outName); } catch {}
-}
-
-exportBtn.addEventListener('click', async()=>{
-if(!selectedFile || busy) return;
-busy = true; exportBtn.disabled = true; downloads.replaceChildren(); setProgress(1);
-
-let inputName = 'input.mp4';
-let baseName = selectedFile.name.replace(/.[^.]+`$/, '').replace(/[^a-z0-9_-]+/gi, '_') || 'video';
-
-try {
-await loadFFmpeg();
-setStatus('Reading video file into memory...');
-await ffmpeg.writeFile(inputName, new Uint8Array(await selectedFile.arrayBuffer()));
-setProgress(30);
-
-let mode = format.value;
-await runProcess(mode, inputName, baseName, $('audio').checked);
-
-setProgress(100);
-setStatus('Processing completed successfully! Download your file below.');
-try { await ffmpeg.deleteFile(inputName); } catch {}
-} catch(err){
-console.error(err);
-setStatus('Processing failed: ' + (err?.message || String(err)));
-} finally {
-busy = false; exportBtn.disabled = !selectedFile;
-}
+exportBtn.addEventListener('click',async()=>{
+ if(!selectedFile||busy)return;busy=true;exportBtn.disabled=true;downloads.replaceChildren();setProgress(1);
+ const inputName='input.mp4', baseName=(selectedFile.name.replace(/\.[^.]+$/,'').replace(/[^a-z0-9_-]+/gi,'_')||'rounded_video')+'_rounded';
+ try{
+   await loadFFmpeg();
+   setStage('writeFile input');
+   await ffmpeg.writeFile(inputName,new Uint8Array(await selectedFile.arrayBuffer()));
+   const size=await getSize(inputName);
+   dlog(`output size ${size.w}x${size.h}, duration ${size.dur}`);
+   setStage('write mask.png');
+   await ffmpeg.writeFile('mask.png',await drawMask(size.w,size.h,Number(radius.value)));
+   const modes=format.value==='both'?['webm','mov']:[format.value];
+   for(let i=0;i<modes.length;i++){setProgress((i/modes.length)*100);await runOne(modes[i],inputName,baseName,$('audio').checked,size)}
+   setProgress(100);setStatus('Finished. Download your file(s) below. If your target app shows black corners, it may not support alpha in this format.');
+   for(const f of [inputName,'mask.png']){try{await ffmpeg.deleteFile(f)}catch{}}
+ }catch(err){
+   console.error('Failed during stage "'+stage+'":',err);
+   dlog('ERROR during stage "'+stage+'": '+(err?.name||'')+': '+(err?.message||String(err))+'\n'+(err?.stack||'(no stack)'));
+   diag.open=true;
+   setStatus('Processing failed during "'+stage+'": '+(err?.message||String(err))+'\n\nOpen "Diagnostics" below and use "Copy diagnostics" if you need to report this.');
+ }
+ finally{busy=false;exportBtn.disabled=!selectedFile;}
 });
+addEventListener('unhandledrejection',e=>dlog('unhandledrejection: '+(e.reason?.stack||e.reason)));
+addEventListener('error',e=>dlog('window error: '+e.message+' @ '+e.filename+':'+e.lineno));
 </script>
 </body>
 </html>
